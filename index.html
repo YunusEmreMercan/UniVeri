@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>YOK Bolum Verileri</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { cursor: pointer; background-color: #f2f2f2; }
+    .highlight-2024 { background-color: #ffe0e0; }
+    .highlight-2023 { background-color: #e0e0ff; }
+  </style>
+</head>
+<body>
+  <h1>YOK Bolum Verileri</h1>
+  <p>Basliklara tiklayarak siralama yapabilirsiniz.</p>
+
+  <table id="veriTablosu">
+    <thead>
+      <tr>
+        <th>University</th>
+        <th>Program</th>
+        <th>City</th>
+        <th>Quota 2024</th>
+        <th>Placed 2024</th>
+        <th>Rank 2024</th>
+        <th>Quota 2023</th>
+        <th>Placed 2023</th>
+        <th>Rank 2023</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const data = [
+        {
+          "university": "KOC UNIVERSITESI",
+          "program": "Tip (Ingilizce) (Burslu)",
+          "city": "ISTANBUL",
+          "quota": {"2024": 8, "2023": 9},
+          "placed": {"2024": 8, "2023": 9},
+          "rank": {"2024": 24, "2023": 43}
+        },
+        {
+          "university": "ISTANBUL MEDIPOL UNIVERSITESI",
+          "program": "Uluslararasi Tip (Ingilizce) (Burslu)",
+          "city": "ISTANBUL",
+          "quota": {"2024": 10, "2023": 10},
+          "placed": {"2024": 10, "2023": 10},
+          "rank": {"2024": 31, "2023": 30}
+        },
+        {
+          "university": "KOC UNIVERSITESI",
+          "program": "Bilgisayar Muhendisligi (Ingilizce) (Burslu)",
+          "city": "ISTANBUL",
+          "quota": {"2024": 18, "2023": 19},
+          "placed": {"2024": 18, "2023": 19},
+          "rank": {"2024": 122, "2023": 98}
+        },
+        {
+          "university": "ACIBADEM MEHMET ALI AYDINLAR UNIVERSITESI",
+          "program": "Tip (Ingilizce) (Burslu)",
+          "city": "ISTANBUL",
+          "quota": {"2024": 7, "2023": 7},
+          "placed": {"2024": 7, "2023": 7},
+          "rank": {"2024": 203, "2023": 71}
+        }
+      ];
+
+      const tbody = document.querySelector("#veriTablosu tbody");
+      data.forEach(item => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${item.university}</td>
+          <td>${item.program}</td>
+          <td>${item.city}</td>
+          <td class="highlight-2024">${item.quota["2024"]}</td>
+          <td class="highlight-2024">${item.placed["2024"]}</td>
+          <td class="highlight-2024">${item.rank["2024"]}</td>
+          <td class="highlight-2023">${item.quota["2023"]}</td>
+          <td class="highlight-2023">${item.placed["2023"]}</td>
+          <td class="highlight-2023">${item.rank["2023"]}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.querySelectorAll("th").forEach((th, index) => {
+        th.addEventListener("click", () => {
+          const rows = Array.from(tbody.querySelectorAll("tr"));
+          const ascending = !th.classList.contains("asc");
+          rows.sort((a, b) => {
+            const valA = a.children[index].innerText;
+            const valB = b.children[index].innerText;
+            const numA = parseFloat(valA.replace(",", "."));
+            const numB = parseFloat(valB.replace(",", "."));
+            return ascending ? numA - numB : numB - numA;
+          });
+          tbody.innerHTML = "";
+          rows.forEach(r => tbody.appendChild(r));
+          document.querySelectorAll("th").forEach(th => th.classList.remove("asc", "desc"));
+          th.classList.add(ascending ? "asc" : "desc");
+        });
+      });
+    });
+  </script>
+</body>
+</html>
