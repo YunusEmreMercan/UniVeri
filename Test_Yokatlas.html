@@ -1,82 +1,8 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const veriler = [ ... ]; // senin veri kümen
-
-  const tbody = document.querySelector("#veriTablosu tbody");
-  veriler.forEach(item => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${item["Üniversite"]}</td>
-      <td>${item["Program"]}</td>
-      <td>${item["Şehir"]}</td>
-      <td class="highlight-2024">${item.Kontenjan["2024"]}</td>
-      <td class="highlight-2024">${item.Yerlesen["2024"]}</td>
-      <td class="highlight-2024">${item.TBS["2024"]}</td>
-      <td class="highlight-2023">${item.Kontenjan["2023"]}</td>
-      <td class="highlight-2023">${item.Yerlesen["2023"]}</td>
-      <td class="highlight-2023">${item.TBS["2023"]}</td>
-    `;
-    tbody.appendChild(tr);
-  });
-
-  document.querySelectorAll("th").forEach((th, index) => {
-    th.addEventListener("click", () => {
-      const rows = Array.from(tbody.querySelectorAll("tr"));
-      const ascending = !th.classList.contains("asc");
-      rows.sort((a, b) => {
-        const valA = a.children[index].innerText;
-        const valB = b.children[index].innerText;
-        const numA = parseFloat(valA.replace(",", "."));
-        const numB = parseFloat(valB.replace(",", "."));
-        return ascending ? numA - numB : numB - numA;
-      });
-      tbody.innerHTML = "";
-      rows.forEach(r => tbody.appendChild(r));
-      document.querySelectorAll("th").forEach(th => th.classList.remove("asc", "desc"));
-      th.classList.add(ascending ? "asc" : "desc");
-    });
-  });
-});
-</script>
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="UTF-8">
-  <title>YÖK Bölüm Verileri</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
-    th { cursor: pointer; background-color: #f2f2f2; }
-    .highlight-2024 { background-color: #ffe0e0; }
-    .highlight-2023 { background-color: #e0e0ff; }
-  </style>
-</head>
-<body>
-  <h1>YÖK Bölüm Verileri</h1>
-  <p>Başlıklara tıklayarak sıralama yapabilirsiniz.</p>
-
-  <table id="veriTablosu">
-    <thead>
-      <tr>
-        <th>Üniversite</th>
-        <th>Program</th>
-        <th>Şehir</th>
-        <th>Kontenjan 2024</th>
-        <th>Yerleşen 2024</th>
-        <th>TBS 2024</th>
-        <th>Kontenjan 2023</th>
-        <th>Yerleşen 2023</th>
-        <th>TBS 2023</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-
-  <script>
-    const veriler = [
-      {
-        "YOPKodu": "203910699",
+  const veriler = [
+    {
+      "YOPKodu": "203910699",
         "Üniversite": "KOÇ ÜNİVERSİTESİ",
         "Program": "Tıp (İngilizce) (Burslu)",
         "Fakülte": "Tıp Fakültesi",
@@ -122,43 +48,41 @@ document.addEventListener("DOMContentLoaded", () => {
         "Kontenjan": {"2024": 7, "2023": 7},
         "Yerlesen": {"2024": 7, "2023": 7},
         "TBS": {"2024": 203, "2023": 71}
-      }
-    ];
+  ];
 
-    const tbody = document.querySelector("#veriTablosu tbody");
-    veriler.forEach(item => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${item["Üniversite"]}</td>
-        <td>${item["Program"]}</td>
-        <td>${item["Şehir"]}</td>
-        <td class="highlight-2024">${item.Kontenjan["2024"]}</td>
-        <td class="highlight-2024">${item.Yerlesen["2024"]}</td>
-        <td class="highlight-2024">${item.TBS["2024"]}</td>
-        <td class="highlight-2023">${item.Kontenjan["2023"]}</td>
-        <td class="highlight-2023">${item.Yerlesen["2023"]}</td>
-        <td class="highlight-2023">${item.TBS["2023"]}</td>
-      `;
-      tbody.appendChild(tr);
-    });
+  const tbody = document.querySelector("#veriTablosu tbody");
+  veriler.forEach(item => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${item["Üniversite"]}</td>
+      <td>${item["Program"]}</td>
+      <td>${item["Şehir"]}</td>
+      <td class="highlight-2024">${item.Kontenjan["2024"]}</td>
+      <td class="highlight-2024">${item.Yerlesen["2024"]}</td>
+      <td class="highlight-2024">${item.TBS["2024"]}</td>
+      <td class="highlight-2023">${item.Kontenjan["2023"]}</td>
+      <td class="highlight-2023">${item.Yerlesen["2023"]}</td>
+      <td class="highlight-2023">${item.TBS["2023"]}</td>
+    `;
+    tbody.appendChild(tr);
+  });
 
-    document.querySelectorAll("th").forEach((th, index) => {
-      th.addEventListener("click", () => {
-        const rows = Array.from(tbody.querySelectorAll("tr"));
-        const ascending = !th.classList.contains("asc");
-        rows.sort((a, b) => {
-          const valA = a.children[index].innerText;
-          const valB = b.children[index].innerText;
-          const numA = parseFloat(valA.replace(",", "."));
-          const numB = parseFloat(valB.replace(",", "."));
-          return ascending ? numA - numB : numB - numA;
-        });
-        tbody.innerHTML = "";
-        rows.forEach(r => tbody.appendChild(r));
-        document.querySelectorAll("th").forEach(th => th.classList.remove("asc", "desc"));
-        th.classList.add(ascending ? "asc" : "desc");
+  document.querySelectorAll("th").forEach((th, index) => {
+    th.addEventListener("click", () => {
+      const rows = Array.from(tbody.querySelectorAll("tr"));
+      const ascending = !th.classList.contains("asc");
+      rows.sort((a, b) => {
+        const valA = a.children[index].innerText;
+        const valB = b.children[index].innerText;
+        const numA = parseFloat(valA.replace(",", "."));
+        const numB = parseFloat(valB.replace(",", "."));
+        return ascending ? numA - numB : numB - numA;
       });
+      tbody.innerHTML = "";
+      rows.forEach(r => tbody.appendChild(r));
+      document.querySelectorAll("th").forEach(th => th.classList.remove("asc", "desc"));
+      th.classList.add(ascending ? "asc" : "desc");
     });
-  </script>
-</body>
-</html>
+  });
+});
+</script>
