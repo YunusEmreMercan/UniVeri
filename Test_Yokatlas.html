@@ -19,15 +19,15 @@
   <table id="veriTablosu">
     <thead>
       <tr>
-        <th>Üniversite</th>
+        <th>University</th>
         <th>Program</th>
-        <th>Şehir</th>
-        <th>Kontenjan 2024</th>
-        <th>Yerleşen 2024</th>
-        <th>TBS 2024</th>
-        <th>Kontenjan 2023</th>
-        <th>Yerleşen 2023</th>
-        <th>TBS 2023</th>
+        <th>City</th>
+        <th>Quota 2024</th>
+        <th>Placed 2024</th>
+        <th>Rank 2024</th>
+        <th>Quota 2023</th>
+        <th>Placed 2023</th>
+        <th>Rank 2023</th>
       </tr>
     </thead>
     <tbody></tbody>
@@ -35,54 +35,54 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const veriler = [
+      const data = [
         {
-          "Üniversite": "KOÇ ÜNİVERSİTESİ",
-          "Program": "Tıp (İngilizce) (Burslu)",
-          "Şehir": "İSTANBUL",
-          "Kontenjan": {"2024": 8, "2023": 9},
-          "Yerlesen": {"2024": 8, "2023": 9},
-          "TBS": {"2024": 24, "2023": 43}
+          "university": "KOÇ ÜNİVERSİTESİ",
+          "program": "Tıp (İngilizce) (Burslu)",
+          "city": "İSTANBUL",
+          "quota": {"2024": 8, "2023": 9},
+          "placed": {"2024": 8, "2023": 9},
+          "rank": {"2024": 24, "2023": 43}
         },
         {
-          "Üniversite": "İSTANBUL MEDİPOL ÜNİVERSİTESİ",
-          "Program": "Uluslararası Tıp (İngilizce) (Burslu)",
-          "Şehir": "İSTANBUL",
-          "Kontenjan": {"2024": 10, "2023": 10},
-          "Yerlesen": {"2024": 10, "2023": 10},
-          "TBS": {"2024": 31, "2023": 30}
+          "university": "İSTANBUL MEDİPOL ÜNİVERSİTESİ",
+          "program": "Uluslararası Tıp (İngilizce) (Burslu)",
+          "city": "İSTANBUL",
+          "quota": {"2024": 10, "2023": 10},
+          "placed": {"2024": 10, "2023": 10},
+          "rank": {"2024": 31, "2023": 30}
         },
         {
-          "Üniversite": "KOÇ ÜNİVERSİTESİ",
-          "Program": "Bilgisayar Mühendisliği (İngilizce) (Burslu)",
-          "Şehir": "İSTANBUL",
-          "Kontenjan": {"2024": 18, "2023": 19},
-          "Yerlesen": {"2024": 18, "2023": 19},
-          "TBS": {"2024": 122, "2023": 98}
+          "university": "KOÇ ÜNİVERSİTESİ",
+          "program": "Bilgisayar Mühendisliği (İngilizce) (Burslu)",
+          "city": "İSTANBUL",
+          "quota": {"2024": 18, "2023": 19},
+          "placed": {"2024": 18, "2023": 19},
+          "rank": {"2024": 122, "2023": 98}
         },
         {
-          "Üniversite": "ACIBADEM MEHMET ALİ AYDINLAR ÜNİVERSİTESİ",
-          "Program": "Tıp (İngilizce) (Burslu)",
-          "Şehir": "İSTANBUL",
-          "Kontenjan": {"2024": 7, "2023": 7},
-          "Yerlesen": {"2024": 7, "2023": 7},
-          "TBS": {"2024": 203, "2023": 71}
+          "university": "ACIBADEM MEHMET ALİ AYDINLAR ÜNİVERSİTESİ",
+          "program": "Tıp (İngilizce) (Burslu)",
+          "city": "İSTANBUL",
+          "quota": {"2024": 7, "2023": 7},
+          "placed": {"2024": 7, "2023": 7},
+          "rank": {"2024": 203, "2023": 71}
         }
       ];
 
       const tbody = document.querySelector("#veriTablosu tbody");
-      veriler.forEach(item => {
+      data.forEach(item => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <td>${item["Üniversite"]}</td>
-          <td>${item["Program"]}</td>
-          <td>${item["Şehir"]}</td>
-          <td class="highlight-2024">${item.Kontenjan["2024"]}</td>
-          <td class="highlight-2024">${item.Yerlesen["2024"]}</td>
-          <td class="highlight-2024">${item.TBS["2024"]}</td>
-          <td class="highlight-2023">${item.Kontenjan["2023"]}</td>
-          <td class="highlight-2023">${item.Yerlesen["2023"]}</td>
-          <td class="highlight-2023">${item.TBS["2023"]}</td>
+          <td>${item.university}</td>
+          <td>${item.program}</td>
+          <td>${item.city}</td>
+          <td class="highlight-2024">${item.quota["2024"]}</td>
+          <td class="highlight-2024">${item.placed["2024"]}</td>
+          <td class="highlight-2024">${item.rank["2024"]}</td>
+          <td class="highlight-2023">${item.quota["2023"]}</td>
+          <td class="highlight-2023">${item.placed["2023"]}</td>
+          <td class="highlight-2023">${item.rank["2023"]}</td>
         `;
         tbody.appendChild(tr);
       });
